@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Najah Hurahman</title>
+  <style>
+    :root{
+      --primary:#c89b3c;
+      --primary-dark:#8a6925;
+      --secondary:#0d1b2a;
+      --bg:#f5f1ea;
+      --white:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --card:#fffaf2;
+      --shadow:0 12px 32px rgba(15, 23, 42, 0.12);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1120px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      background: var(--secondary);
+      color: var(--white);
+      font-size:0.9rem;
+      padding:10px 0;
+    }
+
+    .topbar .wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .top-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .top-links span{
+      opacity:0.9;
+    }
+
+    header{
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      color:var(--secondary);
+      letter-spacing:0.5px;
+    }
+
+    .logo-mark{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--primary), #e7c77b);
+      color:var(--secondary);
+      display:grid;
+      place-items:center;
+      font-size:1.2rem;
+      font-weight:700;
+      box-shadow:var(--shadow);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:var(--secondary);
+      font-weight:600;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      opacity:0.85;
+      transition:0.25s;
+    }
+
+    nav a:hover{
+      opacity:1;
+      color:var(--primary-dark);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:700;
+      transition:0.25s;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), #d4ac5f);
+      color:var(--secondary);
+      box-shadow:var(--shadow);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-light{
+      background:rgba(255,255,255,0.2);
+      color:var(--white);
+      border:1px solid rgba(255,255,255,0.35);
+    }
+
+    .hero{
+      position:relative;
+      min-height:760px;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(90deg, rgba(8, 18, 31, 0.75), rgba(8,18,31,0.35)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:var(--white);
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:32px;
+      align-items:center;
+      width:100%;
+      padding:80px 0;
+    }
+
+    .hero-content h1{
+      font-size:clamp(2.5rem, 5vw, 5rem);
+      line-height:1.05;
+      margin:0 0 18px;
+      letter-spacing:-1px;
+    }
+
+    .hero-content p{
+      max-width:620px;
+      font-size:1.06rem;
+      color:rgba(255,255,255,0.88);
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:30px;
+    }
+
+    .stats{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .stat{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:18px;
+      padding:16px 20px;
+      min-width:150px;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.8rem;
+      margin-bottom:4px;
+    }
+
+    .booking-card{
+      background: rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:22px;
+      padding:24px;
+      backdrop-filter: blur(10px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.18);
+    }
+
+    .booking-card h3{
+      margin:0 0 18px;
+      font-size:1.5rem;
+      color:var(--white);
+    }
+
+    .booking-card form{
+      display:grid;
+      gap:16px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field label{
+      font-size:0.9rem;
+      color:rgba(255,255,255,0.8);
+      font-weight:600;
+    }
+
+    .field input,
+    .field select{
+      width:100%;
+      padding:14px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(255,255,255,0.9);
+      color:var(--secondary);
+      font-size:1rem;
+      outline:none;
+    }
+
+    .booking-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    section{
+      padding:90px 0;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:42px;
+    }
+
+    .section-head .mini{
+      color:var(--primary-dark);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      font-size:0.75rem;
+    }
+
+    .section-head h2{
+      margin:8px 0 0;
+      font-size:clamp(2rem, 4vw, 3rem);
+      color:var(--secondary);
+    }
+
+    .rooms-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:24px;
+    }
+
+    .room-card{
+      background: var(--white);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:0.25s ease;
+    }
+
+    .room-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .room-card img{
+      height:240px;
+      object-fit:cover;
+      width:100%;
+    }
+
+    .room-box{
+      padding:22px 20px 18px;
+    }
+
+    .room-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .room-name{
+      font-size:1.35rem;
+      font-weight:700;
+      color:var(--secondary);
+    }
+
+    .price{
+      font-weight:800;
+      color:var(--primary-dark);
+      font-size:1.15rem;
+    }
+
+    .room-box p{
+      color:var(--muted);
+      margin:0 0 18px;
+    }
+
+    .room-features{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:18px;
+    }
+
+    .badge{
+      background:#f5efe8;
+      color:var(--secondary);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:0.78rem;
+      font-weight:700;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:20px;
+    }
+
+    .feature{
+      background:var(--card);
+      border-radius:20px;
+      padding:28px 22px;
+      text-align:center;
+      box-shadow:0 10px 24px rgba(15, 23, 42, 0.04);
+      border:1px solid rgba(200,155,60,0.1);
+    }
+
+    .feature-icon{
+      width:70px;
+      height:70px;
+      margin:0 auto 18px;
+      border-radius:18px;
+      background:linear-gradient(135deg, #fbe6b0, #e1b75c);
+      display:grid;
+      place-items:center;
+      font-size:1.9rem;
+      color:var(--secondary);
+    }
+
+    .feature h3{
+      margin:0 0 10px;
+      font-size:1.2rem;
+      color:var(--secondary);
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .about{
+      background: linear-gradient(180deg, #f9f5ef 0%, #f1eae1 100%);
+    }
+
+    .about-wrap{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .about-photo{
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .about-photo img{
+      width:100%;
+      height:100%;
+      min-height:500px;
+      object-fit:cover;
+    }
+
+    .about-content h2{
+      font-size:clamp(2rem, 3vw, 3rem);
+      color:var(--secondary);
+      margin:0 0 18px;
+    }
+
+    .about-content p{
+      color:var(--muted);
+      margin:0 0 22px;
+    }
+
+    .check-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:14px;
+    }
+
+    .check-list li{
+      position:relative;
+      padding-left:32px;
+      font-weight:600;
+      color:var(--secondary);
+    }
+
+    .check-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background: #f4d98d;
+      color:var(--secondary);
+      display:grid;
+      place-items:center;
+      font-size:0.8rem;
+      font-weight:700;
+    }
+
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .review{
+      background:var(--white);
+      border-radius:20px;
+      padding:24px 22px;
+      box-shadow:0 12px 24px rgba(15,23,42,0.05);
+    }
+
+    .stars{
+      color:#f7b731;
+      letter-spacing:2px;
+      font-size:1.05rem;
+      margin-bottom:10px;
+    }
+
+    .review p{
+      color:var(--muted);
+      margin:0 0 18px;
+    }
+
+    .person{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .avatar{
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #d1b16d, #f5d89a);
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:var(--secondary);
+    }
+
+    .person strong{
+      display:block;
+      color:var(--secondary);
+      font-size:0.95rem;
+    }
+
+    .cta{
+      background:linear-gradient(135deg, var(--secondary), #19324a);
+      color:var(--white);
+      border-radius:28px;
+      padding:42px 36px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-size:clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .cta p{
+      margin:0;
+      color:rgba(255,255,255,0.8);
+    }
+
+    footer{
+      background: #0b1724;
+      color: rgba(255,255,255,0.8);
+      padding:30px 0 50px;
+    }
+
+    .footer-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      color:var(--white);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:22px;
+    }
+
+    @media (max-width: 960px){
+      .hero-inner,
+      .about-wrap,
+      .rooms-grid,
+      .features,
+      .reviews{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-inner{
+        padding:60px 0 40px;
+      }
+
+      .cta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav{
+        flex-wrap:wrap;
+      }
+
+      .topbar .wrap{
+        justify-content:center;
+      }
+
+      .hero-content h1{
+        font-size:2.6rem;
+      }
+
+      .booking-grid{
+        grid-template-columns:1fr;
+      }
+
+      nav{
+        width:100%;
+        justify-content:center;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .hero-actions{
+        display:grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container wrap">
+      <div class="top-links">
+        <span>📍 Jl. Melati No. 45, Bandung</span>
+        <span>📞 +62 812-3456-7890</span>
+      </div>
+      <div class="top-links">
+        <span>⭐ 4.9/5 Rating Tamu</span>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-mark">H</div>
+        <span>Hotel Najah Hurahman</span>
+      </div>
+
+      <nav>
+        <a href="#home">Beranda</a>
+        <a href="#rooms">Kamar</a>
+        <a href="#fasilitas">Fasilitas</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <a href="#booking" class="btn btn-primary">Pesan Sekarang</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1>Nyaman, Tenang, dan Istimewa</h1>
+          <p>
+            Hotel Najah Hurahman menghadirkan pengalaman menginap yang hangat dan elegan
+            untuk keluarga, traveler bisnis, hingga liburan santai Anda.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#rooms" class="btn btn-primary">Lihat Kamar</a>
+            <a href="#tentang" class="btn btn-light">Tentang Kami</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>120+</strong>
+              <span>Kamar Nyaman</span>
+            </div>
+            <div class="stat">
+              <strong>4.9/5</strong>
+              <span>Rating Tamu</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>Layanan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-card" id="booking">
+          <h3>Pesan Kamar</h3>
+          <form>
+            <div class="field">
+              <label for="checkin">Tanggal Check-in</label>
+              <input type="date" id="checkin" />
+            </div>
+
+            <div class="booking-grid">
+              <div class="field">
+                <label for="checkout">Check-out</label>
+                <input type="date" id="checkout" />
+              </div>
+              <div class="field">
+                <label for="tamu">Tamu</label>
+                <select id="tamu">
+                  <option>2 Orang</option>
+                  <option>3 Orang</option>
+                  <option>4 Orang</option>
+                  <option>5 Orang</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="room">Tipe Kamar</label>
+              <select id="room">
+                <option>Deluxe Room</option>
+                <option>Superior Room</option>
+                <option>Family Suite</option>
+                <option>Executive Suite</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cek Ketersediaan</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="rooms">
+      <div class="container">
+        <div class="section-head">
+          <div class="mini">Kamar Pilihan</div>
+          <h2>Tempat Istirahat yang Nyaman</h2>
+        </div>
+
+        <div class="rooms-grid">
+          <article class="room-card">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Superior Room" />
+            <div class="room-box">
+              <div class="room-meta">
+                <div class="room-name">Superior Room</div>
+                <div class="price">Rp 650K/night</div>
+              </div>
+              <p>Perfect untuk perjalanan solo atau pasangan yang ingin beristirahat dengan nyaman.</p>
+              <div class="room-features">
+                <span class="badge">1 Kasur King</span>
+                <span class="badge">AC</span>
+                <span class="badge">Wi-Fi</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Pesan</a>
+            </div>
+          </article>
+
+          <article class="room-card">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80" alt="Deluxe Room" />
+            <div class="room-box">
+              <div class="room-meta">
+                <div class="room-name">Deluxe Room</div>
+                <div class="price">Rp 900K/night</div>
+              </div>
+              <p>Ruang yang lebih luas dengan sentuhan modern dan pemandangan kota yang menenangkan.</p>
+              <div class="room-features">
+                <span class="badge">2 Orang</span>
+                <span class="badge">Kamar Mandi</span>
+                <span class="badge">TV</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Pesan</a>
+            </div>
+          </article>
+
+          <article class="room-card">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80" alt="Family Suite" />
+            <div class="room-box">
+              <div class="room-meta">
+                <div class="room-name">Family Suite</div>
+                <div class="price">Rp 1.3JT/night</div>
+              </div>
+              <p>Ideal untuk keluarga, dengan ruang ekstra, kenyamanan, dan dekorasi hangat.</p>
+              <div class="room-features">
+                <span class="badge">4 Orang</span>
+                <span class="badge">Lounge</span>
+                <span class="badge">Breakfast</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Pesan</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fasilitas">
+      <div class="container">
+        <div class="section-head">
+          <div class="mini">Fasilitas Unggulan</div>
+          <h2>Semua yang Anda Butuhkan</h2>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">🏊</div>
+            <h3>Kolam Renang</h3>
+            <p>Rileksasi dengan kolam renang yang bersih dan nyaman untuk keluarga.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🍽️</div>
+            <h3>Restoran</h3>
+            <p>Menu khas dan internasional disajikan dengan kualitas terbaik.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">💪</div>
+            <h3>Gym & Spa</h3>
+            <p>Menjaga kesehatan dan relaksasi dengan fasilitas premium.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="tentang">
+      <div class="container about-wrap">
+        <div class="about-photo">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80" alt="Hotel Najah Hurahman" />
+        </div>
+
+        <div class="about-content">
+          <div class="mini" style="color:var(--primary-dark); font-weight:700; text-transform:uppercase; letter-spacing:0.12em; font-size:0.75rem;">Tentang Kami</div>
+          <h2>Hotel Najah Hurahman, tempat menginap yang memberi rasa homey.</h2>
+          <p>
+            Hotel Najah Hurahman adalah pilihan ideal untuk liburan keluarga, perjalanan bisnis,
+            atau sekadar menikmati momen santai di kota. Kami menggabungkan pelayanan hangat,
+            desain yang elegan, serta fasilitas modern untuk pengalaman menginap yang tak terlupakan.
+          </p>
+
+          <ul class="check-list">
+            <li>Layanan resepsionis 24 jam</li>
+            <li>Kamar bersih, modern, dan nyaman</li>
+            <li>Lokasi strategis untuk akses kota</li>
+            <li>Breakfast serta paket keluarga menarik</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimoni">
+      <div class="container">
+        <div class="section-head">
+          <div class="mini">Testimoni</div>
+          <h2>Yang Dilakukan Tamu Kami</h2>
+        </div>
+
+        <div class="reviews">
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Tempatnya bersih, stafnya ramah, dan kamarnya sangat nyaman. Pengalaman menginap yang menyenangkan."</p>
+            <div class="person">
+              <div class="avatar">A</div>
+              <div><strong>Anisa</strong><span>Bandung</span></div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Fasilitasnya lengkap dan lokasinya strategis. Cocok untuk staycation keluarga saya."</p>
+            <div class="person">
+              <div class="avatar">R</div>
+              <div><strong>Rahmat</strong><span>Jakarta</span></div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Pelayanan sangat profesional dan hotelnya tenang. Satu kata: puas!"</p>
+            <div class="person">
+              <div class="avatar">D</div>
+              <div><strong>Dea</strong><span>Surabaya</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h3>Siap menginap di Hotel Najah Hurahman?</h3>
+            <p>Pesan sekarang dan nikmati pengalaman stay terbaik bersama keluarga Anda.</p>
+          </div>
+          <a href="#booking" class="btn btn-primary">Reservasi</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <div class="logo-mark" style="width:34px;height:34px;font-size:1rem;">H</div>
+        <span>Hotel Najah Hurahman</span>
+      </div>
+
+      <div class="footer-links">
+        <span>Jl. Melati No. 45, Bandung</span>
+        <span>+62 812-3456-7890</span>
+        <span>hello@najahhurahman.com</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
